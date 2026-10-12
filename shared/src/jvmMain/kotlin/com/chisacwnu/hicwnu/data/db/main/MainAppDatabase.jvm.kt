@@ -1,0 +1,21 @@
+/*
+ * Author: CHISA_CWNU
+ * Organization: Business School of China West Normal University
+ */
+
+package com.chisacwnu.hicwnu.data.db.main
+
+import androidx.room3.Room
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import com.chisacwnu.hicwnu.data.di.AppStorage
+
+actual fun createMainDatabase(appStorage: AppStorage): MainAppDatabase {
+    val dbPath = appStorage.getDatabasePath("main_app_database")
+    return Room.databaseBuilder<MainAppDatabase>(
+        name = dbPath,
+        factory = { MainAppDatabaseConstructor.initialize() }
+    )
+        .addMigrations(*ALL_MIGRATIONS)
+        .setDriver(BundledSQLiteDriver())
+        .build()
+}

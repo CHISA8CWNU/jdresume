@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package com.chisacwnu.hicwnu.data.model;
+
+option java_package = "com.chisacwnu.hicwnu.data.model.schedule_style";
+option java_multiple_files = true;
+
+message DualColorProto {
+  int64 light_color = 1;
+  int64 dark_color = 2;
+}
+
+enum BorderTypeProto {
+  BORDER_TYPE_NONE = 0;
+  BORDER_TYPE_SOLID = 1;
+  BORDER_TYPE_DASHED = 2;
+}
+
+enum ScheduleModeProto {
+  SECTION_MODE = 0;
+  TIME_24H_MODE = 1;
+}
+
+message ScheduleGridStyleProto {
+
+  optional float time_column_width_dp = 1;
+  optional float day_header_height_dp = 2;
+  optional float section_height_dp = 3;
+
+  optional float course_block_corner_radius_dp = 4;
+  optional float course_block_outer_padding_dp = 5;
+  optional float course_block_inner_padding_dp = 6;
+  optional float course_block_alpha_float = 7;
+
+  reserved 9, 10;
+  reserved "overlap_course_color_long", "overlap_course_color_dark_long";
+
+  reserved 24;
+  reserved "overlap_style_toggle";
+
+  repeated DualColorProto course_color_maps = 11;
+
+  optional bool hide_section_time = 12;
+  optional bool hide_date_under_day = 13;
+  optional bool show_start_time = 14;
+  optional bool hide_grid_lines = 20;
+  optional int64 page_text_color_long = 25;
+
+  optional float course_block_font_scale = 15;
+  optional bool hide_location = 16;
+  optional bool hide_teacher = 17;
+  optional bool remove_location_at = 18;
+  optional bool text_align_center_horizontal = 21;
+  optional bool text_align_center_vertical = 22;
+  optional BorderTypeProto border_type = 23;
+  optional int64 course_text_color_long = 26;
+  optional ScheduleModeProto schedule_mode = 27;
+
+  optional string background_image_path = 19;
+}

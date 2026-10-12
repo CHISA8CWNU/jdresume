@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+option java_package = "school_index";
+
+package school_index;
+
+enum AdapterCategory {
+
+    ADAPTER_CATEGORY_UNKNOWN = 0;
+    
+
+    GENERAL_TOOL = 1;
+    BACHELOR_AND_ASSOCIATE = 2;
+    POSTGRADUATE = 3;
+
+}
+
+message SchoolIndex {
+
+  int32 protocol_version = 1;
+
+  string version_id = 2;
+
+  repeated School schools = 3;
+}
+
+message School {
+
+    string id = 1;
+
+    string name = 2;
+
+    string initial = 3;
+
+    string resource_folder = 4;
+    
+
+    repeated Adapter adapters = 5;
+}
+
+message Adapter {
+
+    string adapter_id = 1;
+
+    string adapter_name = 2;
+
+    AdapterCategory category = 3;
+
+    string asset_js_path = 4;
+
+    optional string import_url = 5;
+    
+
+    string description = 6;
+    
+
+    string maintainer = 7;
+}
